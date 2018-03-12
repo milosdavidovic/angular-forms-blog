@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,12 +7,30 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  katchupTypes = ['No Katchup', 'Mild', 'Hot'];
-  extras = ['Extra cheese', 'Olives'];
-  extrasInitialValue = false;
-  initialNote = 'You can write additional notes here...';
+  defaultName = 'Awesome Pizza';
+  ketchupTypes = ['No Katchup', 'Mild', 'Hot'];
+  cheese = false;
+  ham = false;
+  egg = false;
+  mushroom = false;
+  paprika = false;
+  olives = false;
 
-  onSubmit(form: NgForm) {
-    console.log(form);
+  onSubmit(pizzaForm: NgForm) {
+    console.log(pizzaForm.value);
+  }
+
+  onGenerate(pizzaForm: NgForm) {
+    pizzaForm.setValue({
+      name: this.defaultName,
+      ketchup: 'Hot',
+      pizzaSize: 'large',
+      cheese: true,
+      egg: true,
+      ham: true,
+      olives: true,
+      paprika: false,
+      mushroom: false
+    });
   }
 }
